@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+[core]
+
+[user]
+	name = tcsiwula
+	email = tcsiwula@usfca.edu
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[core]
+	autocrlf = input
