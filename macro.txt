@@ -1,0 +1,3 @@
+define(CSD, Computer Science Department)
+
+I really like the CSD.
