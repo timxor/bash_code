@@ -1,5 +1,0 @@
-aws_access_key = "AKIAJJHELZUXGSOFBRZQ"
-aws_secret_key = "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"
-aws_key_path = "~/.ssh/github_rsa_key.pub"
-aws_key_name = "github_rsa_key"
-aws_region = "us-west-2"
