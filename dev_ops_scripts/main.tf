@@ -1,15 +1,20 @@
-# Specify the provider and access details
+#  --------------------------------------------------------------------------------------------------------------------
+#  1. declare infrastructure provider
+#  --------------------------------------------------------------------------------------------------------------------
 provider "aws" {
   region = "${var.aws_region}"
 }
 
+#  --------------------------------------------------------------------------------------------------------------------
+#  2. declare load balancer
+#  --------------------------------------------------------------------------------------------------------------------
 resource "aws_elb" "web-elb" {
   name = "terraform-example-elb"
 
-  # The same availability zone as our instances
-  #availability_zones = ["us-west-2a", "us-west-2b", "us-west-2c"]
+  subnets         = ["${aws_subnet.default.id}"]
+  security_groups = ["${aws_security_group.elb.id}"]
+  instances       = ["${aws_instance.web.id}"]
 
-  availability_zones = ["${split(",", var.availability_zones)}"]
   listener {
     instance_port = 80
     instance_protocol = "http"
@@ -27,6 +32,9 @@ resource "aws_elb" "web-elb" {
 
 }
 
+#  --------------------------------------------------------------------------------------------------------------------
+#  3. declare autoscaling group
+#  --------------------------------------------------------------------------------------------------------------------
 resource "aws_autoscaling_group" "web-asg" {
   availability_zones = ["${split(",", var.availability_zones)}"]
   name = "terraform-example-asg"
@@ -44,6 +52,9 @@ resource "aws_autoscaling_group" "web-asg" {
   }
 }
 
+#  --------------------------------------------------------------------------------------------------------------------
+#  4. declare bootstrap configurations
+#  --------------------------------------------------------------------------------------------------------------------
 resource "aws_launch_configuration" "web-lc" {
   name = "terraform-example-lc"
   image_id = "${lookup(var.aws_amis, var.aws_region)}"
@@ -51,14 +62,25 @@ resource "aws_launch_configuration" "web-lc" {
   # Security group
   security_groups = ["${aws_security_group.elb.id}"]
   user_data = "${file("userdata.sh")}"
-  key_name = "${var.key_name}"
+  key_name = "${aws_key_pair.auth.key_name}"
 }
 
-# A security group for the ELB so it is accessible via the web
+
+#  --------------------------------------------------------------------------------------------------------------------
+#  5. declare security group for load balancers -- access: http
+#  --------------------------------------------------------------------------------------------------------------------
 resource "aws_security_group" "elb" {
   name        = "terraform_example_elb"
   description = "Used in the terraform"
   vpc_id      = "${aws_vpc.default.id}"
+
+  # SSH access from anywhere
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   # HTTP access from anywhere
   ingress {
@@ -77,25 +99,73 @@ resource "aws_security_group" "elb" {
   }
 }
 
+#  --------------------------------------------------------------------------------------------------------------------
+#  6. declare key pair
+#  --------------------------------------------------------------------------------------------------------------------
+resource "aws_key_pair" "auth" {
+  key_name = "github_rsa_key"
+  public_key = "${file("~/.ssh/github_rsa_key.pub")}"
+}
 
+#  --------------------------------------------------------------------------------------------------------------------
+#  7. create a virtual private computer (VPC) for the servers to live within
+#  --------------------------------------------------------------------------------------------------------------------
+resource "aws_vpc" "default" {
+  cidr_block = "10.0.0.0/16"
+}
+
+#  --------------------------------------------------------------------------------------------------------------------
+#  8. create an internet gateway to act as a firewall between internet and back-end services
+#  --------------------------------------------------------------------------------------------------------------------
+resource "aws_internet_gateway" "default" {
+  vpc_id = "${aws_vpc.default.id}"
+}
+
+
+#  --------------------------------------------------------------------------------------------------------------------
+#  1. declare infrastructure provider
+#  --------------------------------------------------------------------------------------------------------------------
+# Grant the VPC internet access on its main route table
+resource "aws_route" "internet_access" {
+  route_table_id         = "${aws_vpc.default.main_route_table_id}"
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = "${aws_internet_gateway.default.id}"
+}
+
+
+#  --------------------------------------------------------------------------------------------------------------------
+#  1. declare infrastructure provider
+#  --------------------------------------------------------------------------------------------------------------------
+# Create a subnet to launch our instances into
+resource "aws_subnet" "default" {
+  vpc_id                  = "${aws_vpc.default.id}"
+  cidr_block              = "10.0.1.0/24"
+  map_public_ip_on_launch = true
+}
+
+
+
+#  --------------------------------------------------------------------------------------------------------------------
+#  1. declare infrastructure provider
+#  --------------------------------------------------------------------------------------------------------------------
 resource "aws_instance" "web" {
-  # The connection block tells our provisioner how to
-  # communicate with the resource (instance)
   connection {
-    # The default username for our AMI
+    type = "ssh"
     user = "ubuntu"
-
-    # The connection will use the local SSH agent for authentication.
+    private_key = "${file("~/.ssh/ca_north_key.pem.pem")}"
+    timeout = "2m"
+    agent = false
   }
 
-  instance_type = "m1.small"
+  instance_type = "t2.micro"
 
   # Lookup the correct AMI based on the region
   # we specified
   ami = "${lookup(var.aws_amis, var.aws_region)}"
 
   # The name of our SSH keypair we created above.
-  key_name = "${aws_key_pair.auth.id}"
+  key_name = "${aws_key_name}"
+
 
   # Our Security group to allow HTTP and SSH access
   vpc_security_group_ids = ["${aws_security_group.elb.id}"]
@@ -115,32 +185,4 @@ resource "aws_instance" "web" {
       "sudo service nginx start"
     ]
   }
-}
-
-resource "aws_key_pair" "auth" {
-  key_name = "auth-key"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD3F6tyPEFEzV0LX3X8BsXdMsQz1x2cEikKDEY0aIj41qgxMCP/iteneqXSIFZBp5vizPvaoIR3Um9xK7PGoW8giupGn+EPuxIA4cDM4vzOqOkiMPhz5XK0whEjkVzTo4+S0puvDZuwIsdiW9mxhJc7tgBNL0cYlWSYVkz4G/fslNfRPW5mYAM49f4fhtxPb5ok4Q2Lg9dPKVHO/Bgeu5woMc7RY0p1ej6D4CKFE6lymSDJpW0YHX/wqE9+cfEauh7xZcG0q9t2ta6F6fmX0agvpFyZo8aFbXeUBr7osSCJNgvavWbM/06niWrOvYX2xwWdhXmXSrbX8ZbabVohBK41 email@example.com"
-}
-# Create a VPC to launch our instances into
-resource "aws_vpc" "default" {
-  cidr_block = "10.0.0.0/16"
-}
-
-# Create an internet gateway to give our subnet access to the outside world
-resource "aws_internet_gateway" "default" {
-  vpc_id = "${aws_vpc.default.id}"
-}
-
-# Grant the VPC internet access on its main route table
-resource "aws_route" "internet_access" {
-  route_table_id         = "${aws_vpc.default.main_route_table_id}"
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = "${aws_internet_gateway.default.id}"
-}
-
-# Create a subnet to launch our instances into
-resource "aws_subnet" "default" {
-  vpc_id                  = "${aws_vpc.default.id}"
-  cidr_block              = "10.0.1.0/24"
-  map_public_ip_on_launch = true
 }

@@ -1,6 +1,6 @@
 variable "aws_region" {
   description = "The AWS region to create things in."
-  default = "us-east-1"
+  default = "us-west-2"
 }
 
 # ubuntu-trusty-14.04 (x64)
@@ -11,13 +11,19 @@ variable "aws_amis" {
   }
 }
 
-variable "availability_zones" {
-  default = "us-east-1,us-west-2"
-  description = "List of availability zones, use AWS CLI to find your "
+variable "key_name" {
+  description = "Desired name of AWS key pair"
+  default = "github_rsa_key"
 }
 
-variable "key_name" {
-  description = "Name of AWS key pair"
+variable "key_path" {
+  description = "key location"
+  default = "~/.ssh/github_rsa_key.pub"
+}
+
+variable "availability_zones" {
+  default = "us-west-2"
+  description = "List of availability zones, use AWS CLI to find your "
 }
 
 variable "instance_type" {
