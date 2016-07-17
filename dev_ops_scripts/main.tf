@@ -56,7 +56,7 @@ resource "aws_autoscaling_group" "web-asg" {
 #  4. declare bootstrap configurations
 #  --------------------------------------------------------------------------------------------------------------------
 resource "aws_launch_configuration" "web-lc" {
-  name = "terraform-example-lc"
+  name = "bootstrap-config"
   image_id = "${lookup(var.aws_amis, var.aws_region)}"
   instance_type = "${var.instance_type}"
   # Security group
@@ -100,14 +100,6 @@ resource "aws_security_group" "elb" {
 }
 
 #  --------------------------------------------------------------------------------------------------------------------
-#  6. declare key pair
-#  --------------------------------------------------------------------------------------------------------------------
-resource "aws_key_pair" "auth" {
-  key_name = "github_rsa_key"
-  public_key = "${file("~/.ssh/github_rsa_key.pub")}"
-}
-
-#  --------------------------------------------------------------------------------------------------------------------
 #  7. create a virtual private computer (VPC) for the servers to live within
 #  --------------------------------------------------------------------------------------------------------------------
 resource "aws_vpc" "default" {
@@ -143,7 +135,13 @@ resource "aws_subnet" "default" {
   map_public_ip_on_launch = true
 }
 
-
+#  --------------------------------------------------------------------------------------------------------------------
+#  6. declare key pair
+#  --------------------------------------------------------------------------------------------------------------------
+resource "aws_key_pair" "auth" {
+  key_name = "id_rsa"
+  public_key = "${file("~/.ssh/id_rsa.pub")}"
+}
 
 #  --------------------------------------------------------------------------------------------------------------------
 #  1. declare infrastructure provider
@@ -152,7 +150,7 @@ resource "aws_instance" "web" {
   connection {
     type = "ssh"
     user = "ubuntu"
-    private_key = "${file("~/.ssh/ca_north_key.pem.pem")}"
+    private_key = "${file("~/.ssh/aws_ubuntu.pem")}"
     timeout = "2m"
     agent = false
   }
@@ -164,7 +162,7 @@ resource "aws_instance" "web" {
   ami = "${lookup(var.aws_amis, var.aws_region)}"
 
   # The name of our SSH keypair we created above.
-  key_name = "${aws_key_name}"
+  key_name = "id_rsa"
 
 
   # Our Security group to allow HTTP and SSH access
@@ -178,11 +176,5 @@ resource "aws_instance" "web" {
   # We run a remote provisioner on the instance after creating it.
   # In this case, we just install nginx and start it. By default,
   # this should be on port 80
-  provisioner "remote-exec" {
-    inline = [
-      "sudo apt-get -y update",
-      "sudo apt-get -y install nginx",
-      "sudo service nginx start"
-    ]
-  }
+
 }

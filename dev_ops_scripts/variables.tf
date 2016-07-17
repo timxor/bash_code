@@ -13,16 +13,16 @@ variable "aws_amis" {
 
 variable "key_name" {
   description = "Desired name of AWS key pair"
-  default = "github_rsa_key"
+  default = "id_rsa"
 }
 
 variable "key_path" {
   description = "key location"
-  default = "~/.ssh/github_rsa_key.pub"
+  default = "~/.ssh/id_rsa.pub"
 }
 
 variable "availability_zones" {
-  default = "us-west-2"
+  default = "us-west-2a"
   description = "List of availability zones, use AWS CLI to find your "
 }
 
