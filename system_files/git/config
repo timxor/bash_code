@@ -1,0 +1,16 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+	url = https://github.com/tcsiwula/tinyflights_web_app.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[remote "all"]
+ //   url=ssh://git@bitbucket.org/tinyflights/tinyflights.com.git
+//	url=ssh://git@github.com/tcsiwula/tinyflights_web_app.git
