@@ -17,9 +17,8 @@ echo "+      o     +              o"
 echo "   +             o     +       +"
 echo "o          +"
 echo "-_-_-_-_-_-_-_,------,      o"
-echo "_-_-_-_-_-_-_-|     /\_/\"
+echo "_-_-_-_-_-_-_-|     /_/"
 echo "-_-_-_-_-_-_--|__()  +"
-echo "_-_-_-_-_-_-_-''''  ''''"
 echo "+      o         o   +       o"
 echo "   +         +"
 echo "o        o         o      o     +"
@@ -32,15 +31,15 @@ if [[ $(uname -a) == *"Darwin"* ]]; then
     distro_name="osx"
 elif [[ $(cat /etc/*-release) == *"Ubuntu"* ]]; then
     distro_name="ubuntu"
-elif [[ $system_name == *"Debian"* ]]; then 
+elif [[ $(cat /etc/*-release) == *"Debian"* ]]; then 
     distro_name="debian" 
-elif [[ $system_name == *"SUSE"* ]]; then 
+elif [[ $(cat /etc/*-release) == *"SUSE"* ]]; then 
     distro_name="suse" 
-elif [[ $system_name == *"Red"* ]]; then 
+elif [[ $(cat /etc/*-release) == *"Red"* ]]; then 
     distro_name="redhat" 
-elif [[ $system_name == *"Fedora"* ]]; then 
+elif [[ $(cat /etc/*-release) == *"Fedora"* ]]; then 
     distro_name="fedora" 
-elif [[ $system_name == *"Cent"* ]]; then 
+elif [[ $(cat /etc/*-release) == *"Cent"* ]]; then 
     distro_name="cent"
 else
     echo "No system_name identified to target an installation."
