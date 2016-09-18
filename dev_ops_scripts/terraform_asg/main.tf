@@ -4,7 +4,7 @@
 # Date: Mon Jul 18th 2016
 # This is a terraform script that will bootstrap an ASG with access over an ELB.
 #  --------------------------------------------------------------------------------------------------------------------
-# Complie: terraform plan
+# Compile: terraform plan
 # Run: terraform apply
 # Stop: terraform destroy
 #  --------------------------------------------------------------------------------------------------------------------
