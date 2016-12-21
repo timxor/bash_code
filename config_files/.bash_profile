@@ -1,50 +1,62 @@
 #-----------------------------------------------------------------------------
-# Tim Siwula's .bash_profile preferences.
-# tcsiwula@usfca.edu
-# updated:  09/18/2016
+# Tim Siwula -- tcsiwula@gmail.edu
+# file: ~/.bash_profile
+# updated:  11/29/2016
+#
 # file path:  ~/.bash_profile
-# edit: atom .bash_profile
-# update: source .bash_profile
+# edit: atom ~/.bash_profile
+# update: source ~/.bash_profile
+#
+# shortcuts: addcommand == atom ~/.bash_profile
+# shortcuts: updatecommand == source ~/.bash_profile
+#
 #-----------------------------------------------------------------------------
 source ~/.profile
-export PATH=/usr/local/bin:$PATH
+
+# postgresql database server config
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+
+# terminal command prompt icon
+export PS1="🤣  "
+
+
+#-----------------------------------------------------------------------------
+#
+#-----------------------------------------------------------------------------
+alias scrn="screen -dr"
+alias show="screen -list"
+alias chrome="open -a \"Google Chrome\""
+alias pull="git pull origin master"
+alias push="git push origin master"
+alias p1="cd /Users/timsiwula/Dropbox/cs451_fall_2016/project/"
+alias addcommand="atom ~/.bash_profile"
+alias updatecommand="source ~/.bash_profile"
+alias uc="updatecommand"
 alias c="clear"
 alias h="history"
+alias p3="/Users/timsiwula/IdeaProjects"
+alias dk="cd /Users/timsiwula/Desktop/"
+alias itimmy="cd /Users/timsiwula/WebstormProjects/itimmy"
 #-----------------------------------------------------------------------------
-echo "+      o     +              o"
-echo "Hello Tim! :-)"
-echo "+      o     +              o"
-echo "   +             o     +       +"
-echo "o          +"
-echo "-_-_-_-_-_-_-_,------,      o"
-echo "_-_-_-_-_-_-_-|     /_/"
-echo "-_-_-_-_-_-_--|__()  +"
-echo "+      o         o   +       o"
-echo "   +         +"
-echo "o        o         o      o     +"
-echo "Hello Tim! :-)"
-echo "o        o         o      o     +"
+echo "+"
+echo "++"
+echo "+++"
+echo "++++"
+echo "+++++"
+echo "++++++"
+echo "+++++++"
+echo "++++++++"
+echo "+++++++++"
+echo " "
+echo "Hello Master Tim"
+echo " "
+echo "+++++++++"
+echo "++++++++"
+echo "+++++++"
+echo "++++++"
+echo "+++++"
+echo "++++"
+echo "+++"
+echo "++"
+echo "+"
 #-----------------------------------------------------------------------------
-#### Determine System #####
-# 1 get system type and assign to varibale
-if [[ $(uname -a) == *"Darwin"* ]]; then
-    distro_name="osx"
-elif [[ $(cat /etc/*-release) == *"Ubuntu"* ]]; then
-    distro_name="ubuntu"
-elif [[ $(cat /etc/*-release) == *"Debian"* ]]; then 
-    distro_name="debian" 
-elif [[ $(cat /etc/*-release) == *"SUSE"* ]]; then 
-    distro_name="suse" 
-elif [[ $(cat /etc/*-release) == *"Red"* ]]; then 
-    distro_name="redhat" 
-elif [[ $(cat /etc/*-release) == *"Fedora"* ]]; then 
-    distro_name="fedora" 
-elif [[ $(cat /etc/*-release) == *"Cent"* ]]; then 
-    distro_name="cent"
-else
-    echo "No system_name identified to target an installation."
-fi
-echo "You are currently on a <<<$distro_name>>> system"
-echo
-#-----------------------------------------------------------------------------
-
