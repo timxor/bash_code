@@ -11,3 +11,5 @@ say "hey man, can you hear me now?"
 #script
 #chmod
 #env EDITOR=nano crontab -e
+
+# chmod +x filename.sh
