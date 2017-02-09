@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------------
 # Tim Siwula -- tcsiwula@gmail.edu
 # file: ~/.bash_profile
-# updated:  11/29/2016
+# updated: 02/08/2017
 #
 # file path:  ~/.bash_profile
 # edit: atom ~/.bash_profile
@@ -16,9 +16,13 @@ source ~/.profile
 # postgresql database server config
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
+# javacc script link
+export PATH=$PATH:/Users/timsiwula/tools/javacc-5.0/bin
+
 # terminal command prompt icon
 export PS1="🤣 $"
-
+# Init jenv
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 export JAVA_HOME=$(/usr/libexec/java_home)
 #-----------------------------------------------------------------------------
 #
@@ -30,6 +34,8 @@ alias pull="git pull origin master"
 alias push="git push origin master"
 alias p1="cd /Users/timsiwula/Dropbox/cs451_fall_2016/project/"
 alias addcommand="atom ~/.bash_profile"
+alias addc="addcommand"
+alias compilers="cd /Users/timsiwula/Dropbox/code/svn/tcsiwula/cs414"
 alias updatecommand="source ~/.bash_profile"
 alias commit="git commit -S -m"
 alias o="open ."
@@ -69,11 +75,6 @@ echo "+"
 # Your previous /Users/timsiwula/.bash_profile file was backed up as /Users/timsiwula/.bash_profile.macports-saved_2017-01-30_at_14:38:28
 ##
 
-# MacPorts Installer addition on 2017-01-30_at_14:38:28: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
-
-
-# MacPorts Installer addition on 2017-01-30_at_15:06:53: adding an appropriate PATH variable for use with MacPorts.
+# MacPorts Installer addition on 2017-02-06_at_21:46:04: adding an appropriate PATH variable for use with MacPorts.
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
