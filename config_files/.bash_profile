@@ -1,80 +1,115 @@
 #-----------------------------------------------------------------------------
 # Tim Siwula -- tcsiwula@gmail.edu
 # file: ~/.bash_profile
-# updated: 02/08/2017
-#
+# updated: 03/16/2017
+#-----------------------------------------------------------------------------
 # file path:  ~/.bash_profile
 # edit: atom ~/.bash_profile
 # update: source ~/.bash_profile
-#
-# shortcuts: addcommand == atom ~/.bash_profile
-# shortcuts: updatecommand == source ~/.bash_profile
-#
 #-----------------------------------------------------------------------------
-source ~/.profile
-
-# postgresql database server config
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
-
-# javacc script link
-export PATH=$PATH:/Users/timsiwula/tools/javacc-5.0/bin
-
-# terminal command prompt icon
-export PS1="🤣 $"
-# Init jenv
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
-export JAVA_HOME=$(/usr/libexec/java_home)
+# shortcuts: addcommand => atom ~/.bash_profile
+# shortcuts: updatecommand => source ~/.bash_profile
 #-----------------------------------------------------------------------------
-#
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#                 ALIAS COMMANDS
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #-----------------------------------------------------------------------------
+alias NEW1=""
+alias NEW2=""
+alias NEW3=""
+alias NEW4=""
+alias NEW5=""
+#-----------------------------------------------------------------------------
+alias addcommand="atom ~/.bash_profile"
+alias addc="addcommand"
+alias updatecommand="source ~/.bash_profile"
+alias uc="updatecommand"
+alias o="open ."
+alias c="clear"
+alias C="clear"
+alias h="history"
+alias addssh="atom ~/.ssh/config"
+alias p3="/Users/timsiwula/IdeaProjects"
+alias dk="cd /Users/timsiwula/Desktop/"
+alias itimmy="cd /Users/timsiwula/WebstormProjects/itimmy"
+alias hcf="cd /Users/timsiwula/WebstormProjects/buzz-tims_frontend_branch/"
+alias deploy="bash deploy_script.sh"
+alias chatbot="cd /Users/timsiwula/WebstormProjects/ten-x-chatbot && pwd"
+alias react="cd /Users/timsiwula/WebstormProjects/reactjs && pwd"
 alias scrn="screen -dr"
 alias show="screen -list"
 alias chrome="open -a \"Google Chrome\""
 alias pull="git pull origin master"
 alias push="git push origin master"
 alias p1="cd /Users/timsiwula/Dropbox/cs451_fall_2016/project/"
-alias addcommand="atom ~/.bash_profile"
-alias addc="addcommand"
-alias compilers="cd /Users/timsiwula/Dropbox/code/svn/tcsiwula/cs414"
-alias updatecommand="source ~/.bash_profile"
+alias compilers="cd /Users/timsiwula/Dropbox/code/svn/tcsiwula/cs414 && pwd"
 alias commit="git commit -S -m"
-alias o="open ."
-alias run="bash compile_script.sh | /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --kiosk http://localhost:8888/"
 alias geth="geth --rpcapi eth,web3,personal --rpc"
 alias ai="cd /Users/timsiwula/WebstormProjects/AI_JavaBridge && pwd"
 alias dl="cd ~/Downloads && pwd"
+alias run="bash compile_script.sh | /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --kiosk http://localhost:8888/"
+alias hcdb="pgcli -h happychaindb.ciqykqusf0nv.us-west-1.rds.amazonaws.com -p 5432 -U devapp0 happychaindb"
+#-----------------------------------------------------------------------------
 
-alias addssh="atom ~/.ssh/config"
-alias hcdb="psql --host=happychaindb.ciqykqusf0nv.us-west-1.rds.amazonaws.com --port=5432 --username=devapp0 --password --dbname=happychaindb"
-
-alias uc="updatecommand"
-alias c="clear"
-alias h="history"
-alias p3="/Users/timsiwula/IdeaProjects"
-alias dk="cd /Users/timsiwula/Desktop/"
-alias itimmy="cd /Users/timsiwula/WebstormProjects/itimmy"
-alias hcf="cd /Users/timsiwula/WebstormProjects/buzz-tims_frontend_branch/"
-alias reactjs="cd /Users/timsiwula/WebstormProjects/reactjs"
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#                   GREETING MESSAGE
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #-----------------------------------------------------------------------------
 echo "+"
 echo "++"
 echo "+++"
-echo "++++"
-echo "+++++"
-echo " "
-echo "Hello Master Tim"
-echo " "
-echo "+++++"
-echo "++++"
+echo "             ~~~~~~~ Hello Tim ~~~~~~~      "
 echo "+++"
 echo "++"
 echo "+"
 #-----------------------------------------------------------------------------
 
-##
-# Your previous /Users/timsiwula/.bash_profile file was backed up as /Users/timsiwula/.bash_profile.macports-saved_2017-01-30_at_14:38:28
-##
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#                 ENVIROMENT VARIABLE CONFIGURATIONS
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-# MacPorts Installer addition on 2017-02-06_at_21:46:04: adding an appropriate PATH variable for use with MacPorts.
+#-----------------------------------------------------------------------------
+# Bash profile sync
+#-----------------------------------------------------------------------------
+source ~/.profile
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# terminal command prompt icon
+#-----------------------------------------------------------------------------
+#       export PS1="🤣 $"
+export PS1="=>"
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# postgresql database server config
+#-----------------------------------------------------------------------------
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# javacc script link
+#-----------------------------------------------------------------------------
+export PATH=$PATH:/Users/timsiwula/tools/javacc-5.0/bin
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# React Native -- Android Setup
+#              -- Define the ANDROID_HOME environment variable
+#-----------------------------------------------------------------------------
+export ANDROID_HOME=/usr/local/opt/android-sdk
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# Init jenv
+#-----------------------------------------------------------------------------
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+export JAVA_HOME=$(/usr/libexec/java_home)
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
+# MacPorts PATH variable
+#-----------------------------------------------------------------------------
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
+#-----------------------------------------------------------------------------
