@@ -11,15 +11,31 @@
 # shortcuts: updatecommand => source ~/.bash_profile
 #-----------------------------------------------------------------------------
 
+
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#                 SHELL FUNCTIONS
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+alias blah='function _blah(){ echo "First: $1"; echo "Second: $2"; };_blah'
+alias addalias='function _addalias(){ "alias $1 = $2 >> ~/.bash_profile"; };_addalias'
+alias aa="addalias"
+
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #                 ALIAS COMMANDS
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #-----------------------------------------------------------------------------
-alias NEW1=""
-alias NEW2=""
-alias NEW3=""
-alias NEW4=""
-alias NEW5=""
+alias js="cd /Users/timsiwula/WebstormProjects/javascript_code && pwd"
+alias bashcode="cd /Users/timsiwula/ClionProjects/bash_code && pwd"
+alias a4="atom"
+alias a5="atom"
+alias g5="git status"
+alias g7="git branch"
+#-----------------------------------------------------------------------------
+alias tenx="cd /Users/timsiwula/WebstormProjects/ten-x-chatbot && pwd"
+alias notes="cd /Users/timsiwula/Dropbox/notes && pwd && ls -la"
+alias a="atom"
+alias gs="git status"
+alias gb="git branch"
 #-----------------------------------------------------------------------------
 alias addcommand="atom ~/.bash_profile"
 alias addc="addcommand"
@@ -96,9 +112,12 @@ export PATH=$PATH:/Users/timsiwula/tools/javacc-5.0/bin
 
 #-----------------------------------------------------------------------------
 # React Native -- Android Setup
-#              -- Define the ANDROID_HOME environment variable
 #-----------------------------------------------------------------------------
 export ANDROID_HOME=/usr/local/opt/android-sdk
+#-----------------------------------------------------------------------------
+# Enable Gradle Daemon for Android speed up
+#-----------------------------------------------------------------------------
+touch ~/.gradle/gradle.properties && echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
 #-----------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------
