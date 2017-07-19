@@ -29,7 +29,8 @@ vagrant ssh
 # 3 go to vm directory files
 cd quorum-examples/7nodes
 
-# 4 init
+# 4 kill left over instances and init
+./stop.sh
 ./init.sh
 
 # 5 start
