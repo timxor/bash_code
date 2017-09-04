@@ -1,54 +1,64 @@
 #-----------------------------------------------------------------------------
-# Author:         Tim Siwula <tcsiwula@gmail.com>, <@tcsiwula>
-# file:           ~/.zshrc
-# updated:        08/19/2017
+# Tim Siwula -- tcsiwula@gmail.edu
+# file: ~/.bash_profile
+# updated: 07/17/2017
 #-----------------------------------------------------------------------------
-# file path:      ~/.zshrc
-# edit:           atom ~/.zshrc
-# update:         source ~/.zshrc
+# file path:  ~/.bash_profile
+# edit: atom ~/.bash_profile
+# update: source ~/.bash_profile
 #-----------------------------------------------------------------------------
-# shortcuts:      addc == addcommand == atom ~/.zshrc
-# shortcuts:      uc == updatecommand == source ~/.zshrc
+# shortcuts: addcommand => atom ~/.bash_profile
+# shortcuts: updatecommand => source ~/.bash_profile
 #-----------------------------------------------------------------------------
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#                 PATH INDEPENDENT -- ALIAS COMMANDS
+#                 ALIAS COMMANDS
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#-----------------------------------------------------------------------------
+#                 STATS
+#-----------------------------------------------------------------------------
+alias sp="stat -f \"%A %N\" *"     # show permissions
+#-----------------------------------------------------------------------------
+alias benchp="cd $HOME/Desktop/consensys/bench_project/parity && pwd && ls -la"
+alias benchc="cd $HOME/Desktop/consensys/bench_project/cpp-ethereum && pwd && ls -la"
+alias benchg="cd $HOME/Desktop/consensys/bench_project/go-ethereum && pwd && ls -la"
+alias google="gcloud compute ssh high-memory-instance1-zone-us-west1a-260-per-month"
+alias projects="cd /Users/tim.siwula/Dropbox/Projects/ && pwd && ls -la"
+export GOROOT="/usr/local/go"
+
+# directory of your go workspace
+export GOPATH="/Users/tim.siwula/go"
+export PATH="/Users/tim.siwula/go/bin:$PATH"
+
+
 alias a="atom"
-alias addcommand="atom ~/.zshrc"
+#alias gs="git status"
+#alias gb="git branch"
+alias addcommand="atom ~/.bash_profile"
 alias addc="addcommand"
-alias updatecommand="source ~/.zshrc"
+alias updatecommand="source ~/.bash_profile"
 alias uc="updatecommand"
 alias o="open ."
 alias c="clear"
 alias C="clear"
 alias h="history"
 alias addssh="atom ~/.ssh/config"
-alias deploy="bash deploy_script.sh" # at here /usr/local/bin/deploy_script.sh
-#alias gs="git status"
-#alias gb="git branch"
+# at here /usr/local/bin/deploy_script.sh
+alias deploy="bash deploy_script.sh"
 #alias scrn="screen -dr"
 #alias show="screen -list"
 #alias chrome="open -a \"Google Chrome\""
 #alias gpull="git pull origin master"
 #alias gpush="git push origin master"
-#-----------------------------------------------------------------------------
+alias testing="cd /Users/tim.siwula/Desktop/metropolis_testing && pwd && ls -la"
 
 #-----------------------------------------------------------------------------
-#                 PATH SENSITIVE -- ALIAS COMMANDS
+#                 LOCATIONS
 #-----------------------------------------------------------------------------
-alias editdeploy="a /usr/local/bin/deploy_script.sh" # at here /usr/local/bin/deploy_script.sh
-alias benchp="cd $HOME/Dropbox/Projects/parity && pwd && ls -la"
-alias benchc="cd /Users/tim.siwula/Dropbox/Projects/cpp-ethereum/build && pwd && ls -la"
-alias benchg="cd /Users/tim.siwula/Dropbox/Projects/go-ethereum && pwd && ls -la"
-alias google="gcloud compute ssh high-memory-instance1-zone-us-west1a-260-per-month"
-alias projects="cd /Users/tim.siwula/Dropbox/Projects/ && pwd && ls -la"
 alias bashcode="cd /Users/tim.siwula/ClionProjects/bash_code && pwd"
 alias dk="cd /Users/tim.siwula/Desktop/"
 alias itimmy="cd /Users/tim.siwula/WebstormProjects/itimmy"
 alias notes="cd /Users/tim.siwula/Dropbox/notes && pwd && ls -la"
-
-alias testing="cd /Users/tim.siwula/Desktop/metropolis_testing && pwd && ls -la"
 ##alias react="cd /Users/timsiwula/WebstormProjects/reactjs/sb_tutorial && pwd"
 #alias p1="cd /Users/timsiwula/Dropbox/cs451_fall_2016/project/"
 #alias compilers="cd /Users/timsiwula/Dropbox/code/svn/tcsiwula/cs414 && pwd"
@@ -60,50 +70,41 @@ alias testing="cd /Users/tim.siwula/Desktop/metropolis_testing && pwd && ls -la"
 #alias hcdb="pgcli -h happychaindb.ciqykqusf0nv.us-west-1.rds.amazonaws.com -p 5432 -U devapp0 happychaindb"
 #-----------------------------------------------------------------------------
 
-#-----------------------------------------------------------------------------
-#                 STATS ?
-#-----------------------------------------------------------------------------
-alias sp="stat -f \"%A %N\" *"     # show permissions
-#-----------------------------------------------------------------------------
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/tim.siwula/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/tim.siwula/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/tim.siwula/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/tim.siwula/google-cloud-sdk/completion.zsh.inc'; fi
-
-# OPAM configuration
-. /Users/tim.siwula/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-
-# GO configurations a la Matthew!
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
-
-# use homebrew installed git as default git version
-export PATH="/usr/local/bin:${PATH}"
-
-#-----------------------------------------------------------------------------
-# terminal prompt icon
-#-----------------------------------------------------------------------------
-export PS1="=> "
-#-----------------------------------------------------------------------------
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#                 PATH SENESTIVE
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #                   GREETING MESSAGE
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # #-----------------------------------------------------------------------------
-echo "+"
+# echo "+"
 # echo "++"
-echo "~~~~~~~ Hi Tim!  = ) ~~~~~~~ "
+# echo "~~~~~~~ Hello Tim ~~~~~~~ "
 # echo "++"
-echo "+"
+# echo "+"
 # #-----------------------------------------------------------------------------
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #                 ENVIROMENT VARIABLE CONFIGURATIONS
-# default mac path:             /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+# default mac path: /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+
+# use homebrew installed git as default git version
+export PATH="/usr/local/bin:${PATH}"
+
+
+
+#-----------------------------------------------------------------------------
+# terminal command prompt icon
+#-----------------------------------------------------------------------------
+export PS1="=>"
+#-----------------------------------------------------------------------------
+
 
 #-----------------------------------------------------------------------------
 # postgresql database server config
@@ -135,6 +136,12 @@ echo "+"
 #-----------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------
+# MacPorts PATH variable
+#-----------------------------------------------------------------------------
+#export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+#-----------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------
 # Bash profile sync
 #-----------------------------------------------------------------------------
 #source ~/.profile
@@ -148,9 +155,21 @@ echo "+"
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #                 SHELL FUNCTIONS
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#alias blah='function _blah(){ echo "First: $1"; echo "Second: $2"; };_blah'
-#alias addalias='function _addalias(){ "alias $1 = $2 >> ~/.bash_profile"; };_addalias'
-#alias showremotebranches="git ls-remote --heads origin"
-#alias cpu_server="gcloud compute ssh cpu-server"
-#alias copy_bash_profile_to_profile="sudo cat ~/.bash_profile >> ~/.profile && source ~/.profile"
+alias blah='function _blah(){ echo "First: $1"; echo "Second: $2"; };_blah'
+alias addalias='function _addalias(){ "alias $1 = $2 >> ~/.bash_profile"; };_addalias'
+alias showremotebranches="git ls-remote --heads origin"
+alias cpu_server="gcloud compute ssh cpu-server"
+alias copy_bash_profile_to_profile="sudo cat ~/.bash_profile >> ~/.profile && source ~/.profile"
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+# The next line updates PATH for the Google Cloud SDK.
+#if [ -f '/Users/tim.siwula/google-cloud-sdk/path.bash.inc' ]; then source '/Users/tim.siwula/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+#if [ -f '/Users/tim.siwula/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/tim.siwula/google-cloud-sdk/completion.bash.inc'; fi
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
+export PATH=$PATH:/Users/tim.siwula/bin
+
+source '/Users/tim.siwula/lib/azure-cli/az.completion'
