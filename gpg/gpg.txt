@@ -5,3 +5,7 @@ re try gpg august 19th —
 gpg --full-generate-key
 
 # kill it # gpgconf --kill all
+
+
+testing1
+
