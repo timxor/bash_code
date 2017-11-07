@@ -1,0 +1,13 @@
+Host *
+ AddKeysToAgent yes
+ UseKeychain yes
+ IdentityFile ~/.ssh/id_rsa
+
+
+ Host happy_ens
+   HostName 138.197.150.21
+   User root
+
+Host azure
+   HostName 52.173.149.93
+   User tim
