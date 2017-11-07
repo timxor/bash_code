@@ -10,4 +10,5 @@ gpg --full-generate-key
 testing1
 testing2
 test3
+test4
 
