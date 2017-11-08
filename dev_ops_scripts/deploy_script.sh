@@ -9,7 +9,7 @@ echo "-----> starting deploy_script.sh ---->"
 git status
 git add .
 git status
-git commit -m "[auto generated] via tim's deploy_script.sh"
+git commit -m ":bowtie: [auto generated] via tim's deploy_script.sh"
 git push origin master
 git status
 echo "<----- done <----"
