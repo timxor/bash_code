@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------------
 # Tim Siwula -- tcsiwula@gmail.edu
 # file: ~/.bash_profile
-# updated: 03/16/2017
+# updated: 10/15/2017
 #-----------------------------------------------------------------------------
 # file path:  ~/.bash_profile
 # edit: atom ~/.bash_profile
@@ -11,32 +11,17 @@
 # shortcuts: updatecommand => source ~/.bash_profile
 #-----------------------------------------------------------------------------
 
-
-
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#                 SHELL FUNCTIONS
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-alias blah='function _blah(){ echo "First: $1"; echo "Second: $2"; };_blah'
-alias addalias='function _addalias(){ "alias $1 = $2 >> ~/.bash_profile"; };_addalias'
-alias aa="addalias"
-
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #                 ALIAS COMMANDS
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#-----------------------------------------------------------------------------
-alias js="cd /Users/timsiwula/WebstormProjects/javascript_code && pwd"
-alias bashcode="cd /Users/timsiwula/ClionProjects/bash_code && pwd"
-alias a4="atom"
-alias a5="atom"
-alias g5="git status"
-alias g7="git branch"
-#-----------------------------------------------------------------------------
-alias tenx="cd /Users/timsiwula/WebstormProjects/ten-x-chatbot && pwd"
-alias notes="cd /Users/timsiwula/Dropbox/notes && pwd && ls -la"
+alias benchp="cd $HOME/Desktop/consensys/bench_project/parity && pwd && ls -la"
+alias benchc="cd $HOME/Desktop/consensys/bench_project/cpp-ethereum && pwd && ls -la"
+alias benchg="cd $HOME/Desktop/consensys/bench_project/go-ethereum && pwd && ls -la"
+alias google="gcloud compute ssh high-memory-instance1-zone-us-west1a-260-per-month"
+alias projects="cd /Users/tim.siwula/Dropbox/Projects/ && pwd && ls -la"
+alias bash_code="cd $HOME/Dropbox/Projects/bash_code && pwd"
+alias nc="cd /Users/tim.siwula/Desktop/pier && pwd && git branch"
 alias a="atom"
-alias gs="git status"
-alias gb="git branch"
-#-----------------------------------------------------------------------------
 alias addcommand="atom ~/.bash_profile"
 alias addc="addcommand"
 alias updatecommand="source ~/.bash_profile"
@@ -46,89 +31,61 @@ alias c="clear"
 alias C="clear"
 alias h="history"
 alias addssh="atom ~/.ssh/config"
-alias p3="/Users/timsiwula/IdeaProjects"
-alias dk="cd /Users/timsiwula/Desktop/"
-alias itimmy="cd /Users/timsiwula/WebstormProjects/itimmy"
-alias hcf="cd /Users/timsiwula/WebstormProjects/buzz-tims_frontend_branch/"
-alias deploy="bash deploy_script.sh"
-alias chatbot="cd /Users/timsiwula/WebstormProjects/ten-x-chatbot && pwd"
-alias react="cd /Users/timsiwula/WebstormProjects/reactjs && pwd"
-alias scrn="screen -dr"
-alias show="screen -list"
-alias chrome="open -a \"Google Chrome\""
-alias pull="git pull origin master"
-alias push="git push origin master"
-alias p1="cd /Users/timsiwula/Dropbox/cs451_fall_2016/project/"
-alias compilers="cd /Users/timsiwula/Dropbox/code/svn/tcsiwula/cs414 && pwd"
+alias sp="stat -f \"%A %N\" *"     # show permissions
+alias bashcode="cd /Users/tim.siwula/ClionProjects/bash_code && pwd"
+alias dk="cd /Users/tim.siwula/Desktop/"
+alias itimmy="cd /Users/tim.siwula/WebstormProjects/itimmy"
+alias notes="cd /Users/tim.siwula/Dropbox/notes && pwd && ls -la"
 alias commit="git commit -S -m"
-alias geth="geth --rpcapi eth,web3,personal --rpc"
-alias ai="cd /Users/timsiwula/WebstormProjects/AI_JavaBridge && pwd"
+alias startGeth="geth --rpcapi eth,web3,personal --rpc"
 alias dl="cd ~/Downloads && pwd"
-alias run="bash compile_script.sh | /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --kiosk http://localhost:8888/"
 alias hcdb="pgcli -h happychaindb.ciqykqusf0nv.us-west-1.rds.amazonaws.com -p 5432 -U devapp0 happychaindb"
-#-----------------------------------------------------------------------------
+
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#                   GREETING MESSAGE
+#                 syn links for executable scripts
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#-----------------------------------------------------------------------------
-echo "+"
-echo "++"
-echo "+++"
-echo "             ~~~~~~~ Hello Tim ~~~~~~~      "
-echo "+++"
-echo "++"
-echo "+"
-#-----------------------------------------------------------------------------
+alias deploy="bash deploy_script.sh" # located at: /usr/local/bin/deploy_script.sh
+#alias run="bash compile_script.sh | /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --kiosk http://localhost:8888/"
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#                 terminal command prompt icon
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+export PS1="happy_imac ->"
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #                 ENVIROMENT VARIABLE CONFIGURATIONS
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-#-----------------------------------------------------------------------------
-# Bash profile sync
-#-----------------------------------------------------------------------------
-source ~/.profile
-#-----------------------------------------------------------------------------
+# go
+export GOROOT="/usr/local/opt/go/libexec"
+export GOPATH="/Users/tim.siwula/go"
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
-#-----------------------------------------------------------------------------
-# terminal command prompt icon
-#-----------------------------------------------------------------------------
-#       export PS1="🤣 $"
-export PS1="=>"
-#-----------------------------------------------------------------------------
+# # llvm
+# export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-#-----------------------------------------------------------------------------
+# default mac path: /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+# use homebrew installed git as default git version
+export PATH="/usr/local/bin:${PATH}"
+
 # postgresql database server config
-#-----------------------------------------------------------------------------
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
-#-----------------------------------------------------------------------------
+#export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
-#-----------------------------------------------------------------------------
 # javacc script link
-#-----------------------------------------------------------------------------
-export PATH=$PATH:/Users/timsiwula/tools/javacc-5.0/bin
-#-----------------------------------------------------------------------------
+#export PATH=$PATH:/Users/timsiwula/tools/javacc-5.0/bin
 
-#-----------------------------------------------------------------------------
-# React Native -- Android Setup
-#-----------------------------------------------------------------------------
-export ANDROID_HOME=/usr/local/opt/android-sdk
-#-----------------------------------------------------------------------------
-# Enable Gradle Daemon for Android speed up
-#-----------------------------------------------------------------------------
-touch ~/.gradle/gradle.properties && echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
-#-----------------------------------------------------------------------------
-
-#-----------------------------------------------------------------------------
 # Init jenv
-#-----------------------------------------------------------------------------
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
-export JAVA_HOME=$(/usr/libexec/java_home)
-#-----------------------------------------------------------------------------
+#if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+#export JAVA_HOME=$(/usr/libexec/java_home)
 
-#-----------------------------------------------------------------------------
-# MacPorts PATH variable
-#-----------------------------------------------------------------------------
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-#-----------------------------------------------------------------------------
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#                 SHELL FUNCTIONS
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+alias blah='function _blah(){ echo "First: $1"; echo "Second: $2"; };_blah'
+alias addalias='function _addalias(){ "alias $1 = $2 >> ~/.bash_profile"; };_addalias'
+alias showremotebranches="git ls-remote --heads origin"
+alias cpu_server="gcloud compute ssh cpu-server"
+alias copy_bash_profile_to_profile="sudo cat ~/.bash_profile >> ~/.profile && source ~/.profile"
