@@ -1,0 +1,89 @@
+# Author:   Tim Siwula <tcsiwula@gmail.com>
+# File:     ~/.gitignore_global
+# Date:     Wed Nov 15th 2017
+# Docs:     https://help.github.com/articles/ignoring-files/#create-a-global-gitignore
+#
+
+
+############################################
+# Compiled source #
+############################################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+############################################
+# Gradle  #
+############################################
+gradle/
+.gradle/*
+gradle/
+gradlew
+gradlew.bat
+
+############################################
+# Intellij #
+############################################
+.idea
+*.iml
+
+############################################
+# Eclipse #
+############################################
+.classpath
+.project
+build/*
+/bin/
+
+############################################
+# Packages #
+############################################
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+############################################
+# Logs and databases #
+############################################
+*.log
+*.sql
+*.sqlite
+
+############################################
+# OS generated files #
+############################################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.idea/
+*.iml
+*.textClipping
+
+############################################
+#         CONSENSYS PROJECTS               #
+############################################
+.gradle
+/.classpath
+/.gradle
+/.project
+/.settings/*
+/bin/
+/build/*
+/gradlew
+/gradlew.bat
+/keys.test
+/tests
