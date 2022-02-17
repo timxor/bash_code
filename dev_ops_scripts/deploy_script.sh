@@ -2,7 +2,7 @@
 # pwd:
 # chmod +x deploy_script.sh
 # bash deploy_script.sh
-# at here /usr/local/bin/deploy_script.sh
+# cp deploy_script.sh /usr/local/bin/deploy_script.sh
 # alias deploy="bash deploy_script.sh"
 
 echo "-----> starting /usr/local/bin/deploy_script.sh ---->"
